@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perpustakaan Sekolah</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f8f4;
+    margin:0;
+    padding:0;
+    text-align:center;
+}
+.header{
+    background:#4CAF50;
+    color:white;
+    padding:15px;
+    font-size:22px;
+}
+.container{
+    padding:20px;
+}
+input{
+    padding:12px;
+    width:80%;
+    border-radius:8px;
+    border:1px solid #ccc;
+    margin:10px 0;
+}
+button{
+    padding:12px 20px;
+    border:none;
+    border-radius:10px;
+    background:#4CAF50;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+.menu{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    margin-top:20px;
+}
+.card{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 2px 5px rgba(0,0,0,0.1);
+    font-size:18px;
+}
+.book{
+    background:white;
+    padding:15px;
+    margin:10px;
+    border-radius:10px;
+    box-shadow:0 2px 4px rgba(0,0,0,0.1);
+    text-align:left;
+}
+.status-yes{color:green;}
+.status-no{color:red;}
+.hidden{display:none;}
+</style>
+</head>
+
+<body>
+
+<div class="header">📚 Perpustakaan Sekolah</div>
+
+<!-- LOGIN -->
+<div class="container" id="loginPage">
+    <h3>Masukkan Nama Siswa</h3>
+    <input type="text" id="nama" placeholder="Nama kamu...">
+    <br>
+    <button onclick="login()">MASUK</button>
+</div>
+
+<!-- BERANDA -->
+<div class="container hidden" id="homePage">
+    <h3 id="halo"></h3>
+
+    <div class="menu">
+        <div class="card" onclick="showCari()">📖 Cari Buku</div>
+        <div class="card">📚 Buku Saya</div>
+        <div class="card">👤 Profil</div>
+        <div class="card">🏆 Populer</div>
+    </div>
+</div>
+
+<!-- CARI BUKU -->
+<div class="container hidden" id="cariPage">
+    <button onclick="back()">⬅ Kembali</button>
+    <h3>Cari Buku</h3>
+    <input type="text" placeholder="Cari judul buku...">
+
+    <div class="book">
+        <b>Dongeng Nusantara</b><br>
+        Penulis: A. Rahman<br>
+        Status: <span class="status-yes">Tersedia</span>
+    </div>
+
+    <div class="book">
+        <b>Matematika SD</b><br>
+        Penulis: Budi<br>
+        Status: <span class="status-no">Dipinjam</span>
+    </div>
+</div>
+
+<script>
+function login(){
+    let nama=document.getElementById("nama").value;
+    if(nama===""){ alert("Isi nama dulu ya"); return;}
+    document.getElementById("loginPage").classList.add("hidden");
+    document.getElementById("homePage").classList.remove("hidden");
+    document.getElementById("halo").innerText="Halo, "+nama+" 👋";
+}
+
+function showCari(){
+    document.getElementById("homePage").classList.add("hidden");
+    document.getElementById("cariPage").classList.remove("hidden");
+}
+
+function back(){
+    document.getElementById("cariPage").classList.add("hidden");
+    document.getElementById("homePage").classList.remove("hidden");
+}
+</script>
+
+</body>
+</html>
